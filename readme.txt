@@ -63,6 +63,8 @@ Just giving `0` to `formtitle` atribute in the shortcode eg. '[ULWPQSF id=3299 f
 
 You can goto this [website](http://9-sec.com/) to get the details.
 
+For more Info or Documentation please visit [here](http://9-sec.com/2014/01/ultimate-wp-query-search-filter/).
+
 == Screenshots ==
 1. Ultimate WP Query Search Filter setting page 1
 2. Ultimate WP Query Search Filter setting page 2
