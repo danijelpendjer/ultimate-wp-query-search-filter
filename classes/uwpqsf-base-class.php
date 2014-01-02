@@ -89,4 +89,4 @@ if(!class_exists('uwpqsfclass')){
 }//end check class
 global $uwpqsfapi;
 $uwpqsfapi = new uwpqsfclass();
-?>	
+?>
