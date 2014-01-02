@@ -3,7 +3,7 @@
 Plugin Name: Ultimate WP Query Search Filter
 Plugin URI: http://www.9-sec.com/
 Description: This plugin let you using wp_query to filter taxonomy,custom meta and post type as search result.
-Version: 1.0.0
+Version: 1.0.1
 Author: TC 
 Author URI: http://www.9-sec.com/
 */
