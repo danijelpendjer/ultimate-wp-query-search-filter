@@ -1,0 +1,32 @@
+/*the ajax loading icon*/
+.umloading {width:100%;height:20px;background:rgba(255, 255, 255, 0.8) url('ajax_loader.gif') no-repeat 50% 50%;}
+/*the form div*/
+#uwpqsf_id{border:1px solid #ccc;}
+/*Form title*/
+.uform_title{font-weight:bold!important;text-align:center;margin:auto 0 auto 0}
+.uwpqsf_class{width:100%;margin-bottom:5px;clear:both}
+/*label for each field*/
+.uwpqsf_class > span[class*='taxolabel-'], .uwpqsf_class > span[class*='cmflabel-']{float:left;padding:5px;font-weight:bold !important;clear:both;width:100%}
+/*dropdown*/
+.uwpqsf_class select {width:98%;margin-left:1%;margin-right:1%}
+
+/*taxonomy and meta field radio OPTIONS*/
+.uwpqsf_class > label{float:left;width:100%;}
+/*Checkboxes*/
+[class*='tax-check-'] label,[class*='cmf-check-'] label {float:left;width:50%;}
+
+/*search button*/
+.uwpqsf_submit{text-align:center;margin-bottom:15px;}
+/*keyword search label*/
+.uwpqsf_class-keyword{padding:5px;font-weight:bold !important;}
+/*text input for keyword*/
+input#uwpqsf_id_key{width:97%;margin-left:1%;margin-right:1%}
+
+/*Pagination*/
+.uwpqsfpagi{text-align:center;margin-top:15px;margin-bottom:15px;clear:both;width:100%}
+
+a.upagievent{padding-left: 12px; padding-right: 12px; height: 25px; line-height: 25px; display: inline-block; 
+	text-align: center; 
+	}
+span.upagicurrent{padding-left: 12px; padding-right: 12px; height: 25px; line-height: 25px; display: inline-block; 
+	text-align: center;color:#000}
