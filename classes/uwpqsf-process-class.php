@@ -79,9 +79,6 @@ if(!class_exists('uwpqsfprocess')){
 								'value' => strip_tags( stripslashes($v['value'])),
 								'compare' => $safec
 							);
-						}else{
-
-							add_action('cmf_query_array',$v['metakey'],$v['value'],$v['compare'],$id,$getcmf );
 						}
 						
 					   }//end isset
@@ -148,7 +145,7 @@ if(!class_exists('uwpqsfprocess')){
 	 if($query->is_search()){
 	    if($query->query_vars['s'] == 'uwpsfsearchtrg'){	
 		$getdata = $_GET;
-		$taxo = $_GET['taxo'];
+		$taxo = (isset($_GET['taxo']) && !empty($_GET['taxo'])) ? $_GET['taxo'] : null;
 		$cmf = (isset($_GET['cmf']) && !empty($_GET['cmf'])) ? $_GET['cmf'] : null;
 		$id = absint($_GET['uformid']);
 		$options = get_post_meta($id, 'uwpqsf-option', true);
@@ -186,7 +183,7 @@ if(!class_exists('uwpqsfprocess')){
 			's' => esc_html($keyword),
 			);
 							
-		$arg = apply_filters( 'uwpqsf_deftemp_query', $args, $id);	
+		$arg = apply_filters( 'uwpqsf_deftemp_query', $args, $id,$getdata);	
 
 
 		foreach($arg as $k => $v){
@@ -201,7 +198,7 @@ if(!class_exists('uwpqsfprocess')){
 
   function uwpqsf_ajax(){
     $postdata =parse_str($_POST['getdata'], $getdata);
-    $taxo = $getdata['taxo'];
+    $taxo = (isset($getdata['taxo']) && !empty($getdata['taxo'])) ? $getdata['taxo'] : null;
     $cmf = (isset($getdata['cmf']) && !empty($getdata['cmf'])) ? $getdata['cmf'] : null;
     $formid = $getdata['uformid'];
     $nonce =  $getdata['unonce'];
@@ -248,11 +245,11 @@ if(!class_exists('uwpqsfprocess')){
 			's' => esc_html($keyword),
 			);
 							
-		$arg = apply_filters( 'uwpqsf_query_args', $args, $id);		
+		$arg = apply_filters( 'uwpqsf_query_args', $args, $id,$getdata);		
 				
 						
 					    
-		$results =  $this->uajax_result($arg, $id,$pagenumber);
+		$results =  $this->uajax_result($arg, $id,$pagenumber,$getdata);
 		$result = apply_filters( 'uwpqsf_result_tempt',$results , $arg, $id, $getdata );	
 					
 		echo $result;
@@ -263,9 +260,9 @@ if(!class_exists('uwpqsfprocess')){
 
   }//end ajax	
 
-  function uajax_result($arg, $id,$pagenumber){
+  function uajax_result($arg, $id,$pagenumber,$getdata){
     	$query = new WP_Query( $arg );
-	$html ='';
+	$html = '';
 		//print_r($query);	// The Loop
 	if ( $query->have_posts() ) {
 	  $html .= '<h1>'.__('Search Results :', 'UWPQSF' ).'</h1>';
@@ -274,11 +271,10 @@ if(!class_exists('uwpqsfprocess')){
 			$html .= '<article><header class="entry-header">'.get_the_post_thumbnail().'';
 			$html .= '<h1 class="entry-title"><a href="'.get_permalink().'" rel="bookmark">'.get_the_title().'</a></h1>';
 			$html .= '</header>';
-			$html .= get_post_meta($post->ID,'shex_price', true);
 			$html .= '<div class="entry-summary">'.get_the_excerpt().'</div></article>';
 				
 		  }
-			$html .= $this->ajax_pagination($pagenumber,$query->max_num_pages, 4, $id);
+			$html .= $this->ajax_pagination($pagenumber,$query->max_num_pages, 4, $id,$getdata);
 		 } else {
 					$html .= __( 'Nothing Found', 'UWPQSF' );
 				}
@@ -290,7 +286,7 @@ if(!class_exists('uwpqsfprocess')){
 		
   }//end result	 
 
-  function ajax_pagination($pagenumber, $pages = '', $range = 4, $id){
+  function ajax_pagination($pagenumber, $pages = '', $range = 4, $id,$getdata){
 	$showitems = ($range * 2)+1;  
 	 
 	$paged = $pagenumber;

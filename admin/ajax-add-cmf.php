@@ -52,7 +52,7 @@
 		echo '<label><input type="radio" id="taxtype" name="uwpname[cmf]['.$c.'][type]" value="'. $mv.'" '.$checked.' />'.sprintf(__('%s', 'UWPQSF'),$mk).'</label><br>';      }
 		echo '</p>';
 		//for options
-		echo '<p><span><b>'.__("Dropdown Options:","UWPQSF").'</b></span><br>';
+		echo '<p><span><b>'.__("Options:","UWPQSF").'</b></span><br>';
 		echo '<textarea id="cmflabel" name="uwpname[cmf]['.$c.'][opt]" >'.esc_html($option).'</textarea>';
 		echo '</p>';
 		
